@@ -1,0 +1,32 @@
+{
+  "family": "kbn-task-4",
+  "cpu": "2048",
+  "memory": "4096",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": [
+    "FARGATE"
+  ],
+  "executionRoleArn": "arn:aws:iam::544277935543:role/ecsTaskExecutionRole",
+  "taskRoleArn": "arn:aws:iam::544277935543:role/ecsTaskExecutionRole",
+  "containerDefinitions": [
+    {
+      "name": "kbn-container",
+      "image": "544277935543.dkr.ecr.us-east-1.amazonaws.com/kbn:latest",
+      "portMappings": [
+        {
+          "containerPort": 5601,
+          "protocol": "http"
+        }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/kbn-1",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "ecs"
+        }
+      },
+      "essential": true
+    }
+  ]
+}

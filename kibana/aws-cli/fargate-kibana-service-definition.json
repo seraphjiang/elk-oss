@@ -1,0 +1,30 @@
+{
+  "serviceName": "kbn-svc-5",
+  "cluster": "kbn-test-cluster",
+  "launchType": "FARGATE",
+  "deploymentConfiguration": {
+    "maximumPercent": 200,
+    "minimumHealthyPercent": 0
+  },
+  "desiredCount": 1,
+  "networkConfiguration": {
+    "awsvpcConfiguration": {
+      "assignPublicIp": "ENABLED",
+      "securityGroups": [
+        "sg-0f9504c25e0bf6ac4"
+      ],
+      "subnets": [
+        "subnet-0818f4db13620f3e9",
+        "subnet-0da58f6fbed05ea03"
+      ]
+    }
+  },
+  "taskDefinition": "kbn-task-4",
+  "loadBalancers": [
+    {
+      "containerName": "kbn-container",
+      "containerPort": 5601,
+      "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:544277935543:targetgroup/kbn-alb-tg-1-4/d258dd07e715879b"
+    }
+  ]
+}
